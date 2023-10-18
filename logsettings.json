@@ -25,11 +25,10 @@
       "backupCount": 100
     }
   },
-  "loggers": {
-    "__main__": {
+  "loggers":{
+    "root":{
       "level": "DEBUG",
-      "handlers": ["consoleHandler", "rotateHandler"],
-      "propagate": false
+      "handlers": ["consoleHandler", "rotateHandler"]
     }
   }
 }

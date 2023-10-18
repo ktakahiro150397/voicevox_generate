@@ -2,6 +2,9 @@ import json
 
 from logging import config, getLogger
 import os
+import asyncio
+
+from voicevox_generator.voicevox_generator import voicevox_generator
 
 # 現在のスクリプトファイルの絶対パスを取得する
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -15,10 +18,16 @@ with open(settings_file_path) as f:
 
 logger = getLogger(__name__)
 
-
-if __name__ == '__main__':
+async def main():
     logger.debug('debug')
     logger.info('info')
     logger.warning('warning')
     logger.error('error')
     logger.critical('critical')
+
+
+    generator = voicevox_generator()
+    await generator.generate_voice("こんにちは")
+
+if __name__ == "__main__":
+    asyncio.run(main())
