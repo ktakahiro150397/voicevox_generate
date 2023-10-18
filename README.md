@@ -19,7 +19,7 @@
 ```mermaid
 classDiagram
     class voicevox_generator {
-        +str generate_directory
+        +Path generate_directory
         +str[] separator_char
         +bool is_generate_byte_array
         +bool is_generate_file
@@ -30,7 +30,7 @@ classDiagram
 
     class voicevox_generated_data{
         +str generate_str
-        +bytearray[] generate_voice_byte_array
+        +bytes generate_voice_byte_array
         +Path generate_voice_file
         +bool is_generate_byte_array
         +bool is_generate_file
