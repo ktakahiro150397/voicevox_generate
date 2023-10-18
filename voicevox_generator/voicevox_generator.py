@@ -2,6 +2,7 @@ from logging import NullHandler, getLogger
 import pathlib
 from voicevox_generator.voicevox_generated_data import voicevox_generated_data
 from voicevox import Client
+import re
 
 class voicevox_generator():
     '''voicevoxの音声データを生成するクラス。'''
@@ -17,16 +18,31 @@ class voicevox_generator():
         self._logger.addHandler(NullHandler())
         self._logger.propagate = True
 
+    async def generate_voice_multi(self,generate_str:str) -> None:
+        # 区切り文字で文章を区切る
+        pattern = "|".join(self.separators)
+        generate_str_list = re.split(pattern,generate_str)
+
+        async with Client() as client:
+            self._logger.debug("voicevoxに接続しました。")
+
+            audio_query_list = client.create_audio_query()
+
+            client.multi_synthesis()
+        
+        
+        pass
+
     async def generate_voice(self,generate_str:str) -> None:
         '''voicevoxの音声データを生成する。'''
         async with Client() as client:
             self._logger.debug("voicevoxに接続しました。")
 
             audio_query = await client.create_audio_query(generate_str,speaker=1)
-            self._logger.info("audio_queryを取得")
+            self._logger.debug("audio_queryを取得")
 
             audio_data = await audio_query.synthesis(speaker=1)
-            self._logger.info("audio_dataを取得")
+            self._logger.debug("audio_dataを取得")
 
             self._logger.debug("音声データの取得に成功しました。")
 
