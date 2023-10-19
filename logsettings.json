@@ -11,13 +11,13 @@
   "handlers": {
     "consoleHandler": {
       "class": "logging.StreamHandler",
-      "level": "DEBUG",
+      "level": "INFO",
       "formatter": "simple",
       "stream": "ext://sys.stdout"
     },
     "rotateHandler": {
       "class": "logging.handlers.RotatingFileHandler",
-      "level": "DEBUG",
+      "level": "INFO",
       "formatter": "simple",
       "filename": "./log/application.log",
       "encoding": "utf-8",

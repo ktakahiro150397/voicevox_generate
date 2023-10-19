@@ -27,7 +27,32 @@ async def main():
 
 
     generator = voicevox_generator()
-    await generator.generate_voice("こんにちは")
+
+    test_str = "こんにちは。これは複数文章テスト用の文字列です。" \
+    "multiとそうではないバージョンで、文字列生成に差が発生するのかどうか？" \
+    "それとも以外と差がないのか？" \
+    "テストしてみます。" \
+    "以下は適当な文章です。" \
+    "もうちょっとひねった文章を作成したいです。" \
+    "私は猫です。" \
+    "私は犬です。" \
+    "私は鳥です。" \
+    "私は魚です。" \
+    "私は人間です。" \
+    "私はロボットです。" \
+    "私は宇宙人です。"
+
+    logger.info('generate_voice 開始')
+    await generator.generate_voice(test_str)
+    logger.info('generate_voice 完了')
+
+    logger.info('generate_voice_multi 開始')
+    await generator.generate_voice_multi(test_str)
+    logger.info('generate_voice_multi 完了')
+
+    logger.info('generate_voice_pararell 開始')
+    await generator.generate_voice_pararell(test_str)
+    logger.info('generate_voice_pararell 完了')
 
 if __name__ == "__main__":
     asyncio.run(main())
